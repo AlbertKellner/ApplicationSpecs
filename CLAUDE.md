@@ -22,6 +22,7 @@ Diretrizes para padronização de logs em qualquer aplicação.
 - @governance/logging/06-log-error-handling.md — Registro de erros e exceções
 - @governance/logging/07-log-context-enrichment.md — Enriquecimento de contexto nos logs
 - @governance/logging/08-log-request-example.md — Exemplo de requisição completa com fluxo de logs
+- @governance/logging/09-log-datadog-integration.md — Integração com Datadog (Agent Docker e HTTP Sink)
 
 ---
 
