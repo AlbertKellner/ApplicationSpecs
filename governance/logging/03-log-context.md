@@ -7,23 +7,52 @@ Toda requisição HTTP deve receber um identificador único de correlação (`Co
 ### Geração
 
 - O `CorrelationId` deve ser gerado como **GUID v7** (baseado em timestamp, garantindo ordenação cronológica)
-- A geração ocorre no `CorrelationIdMiddleware`, no início do pipeline HTTP
+- A geração ocorre no `CorrelationIdMiddleware`, no início do pipeline HTTP, via `GuidV7.Create()`
+- Se a requisição contiver o header `X-Correlation-Id` com um GUID v7 válido, o ID é reutilizado (rastreabilidade cross-service)
 - O valor é injetado no contexto de log via `LogContext.PushProperty`
+- O valor é adicionado ao header de resposta `X-Correlation-Id`
 
 ### Implementação do Middleware
 
 ```csharp
-public sealed class CorrelationIdMiddleware(RequestDelegate next)
+public sealed class CorrelationIdMiddleware(RequestDelegate next, ILogger<CorrelationIdMiddleware> logger)
 {
+    public const string HeaderName = "X-Correlation-Id";
+    internal const string HttpContextItemKey = "CorrelationId";
+
     public async Task InvokeAsync(HttpContext context)
     {
-        var correlationId = Guid.CreateVersion7().ToString();
-        context.Items["CorrelationId"] = correlationId;
+        logger.LogInformation("[CorrelationIdMiddleware][InvokeAsync] Processar requisição e garantir CorrelationId");
 
-        using (LogContext.PushProperty("CorrelationId", correlationId))
+        var correlationId = ResolveCorrelationId(context);
+
+        context.Items[HttpContextItemKey] = correlationId;
+        context.Response.Headers[HeaderName] = correlationId.ToString();
+
+        using (LogContext.PushProperty(HttpContextItemKey, correlationId))
         {
+            logger.LogInformation(
+                "[CorrelationIdMiddleware][InvokeAsync] Prosseguir com CorrelationId enriquecido no contexto. CorrelationId={CorrelationId}",
+                correlationId);
+
             await next(context);
+
+            logger.LogInformation(
+                "[CorrelationIdMiddleware][InvokeAsync] Retornar resposta com CorrelationId enriquecido. CorrelationId={CorrelationId}",
+                correlationId);
         }
+    }
+
+    private static Guid ResolveCorrelationId(HttpContext context)
+    {
+        if (context.Request.Headers.TryGetValue(HeaderName, out var headerValue)
+            && Guid.TryParse(headerValue, out var parsed)
+            && GuidV7.IsVersion7(parsed))
+        {
+            return parsed;
+        }
+
+        return GuidV7.Create();
     }
 }
 ```
