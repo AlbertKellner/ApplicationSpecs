@@ -21,6 +21,7 @@ Diretrizes para padronização de logs em qualquer aplicação.
 - @governance/logging/05-log-performance.md — Performance e controle de volume
 - @governance/logging/06-log-error-handling.md — Registro de erros e exceções
 - @governance/logging/07-log-context-enrichment.md — Enriquecimento de contexto nos logs
+- @governance/logging/08-log-request-example.md — Exemplo de requisição completa com fluxo de logs
 
 ---
 
