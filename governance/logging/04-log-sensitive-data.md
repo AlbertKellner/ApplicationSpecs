@@ -68,10 +68,10 @@ Nunca logar valores de variáveis de ambiente ou configurações que contenham s
 
 ```csharp
 // INCORRETO
-logger.LogInformation("[Startup] ConnectionString={ConnectionString}", connectionString);
+logger.LogInformation("[Program][Main] ConnectionString={ConnectionString}", connectionString);
 
 // CORRETO
-logger.LogInformation("[Startup] Conexão com banco de dados configurada. Database={Database}", databaseName);
+logger.LogInformation("[Program][Main] Conexão com banco de dados configurada. Database={Database}", databaseName);
 ```
 
 ---
