@@ -42,7 +42,7 @@ Cada linha abaixo é um log real seguindo o padrão de Logging Estruturado com S
 [23/03/2026 14:32:01.1235000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [] [CorrelationIdMiddleware][InvokeAsync] Prosseguir com CorrelationId enriquecido no contexto. CorrelationId=019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12
 [23/03/2026 14:32:01.1240000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [] [AuthenticateFilter][OnActionExecutionAsync] Validar Bearer Token da requisição
 [23/03/2026 14:32:01.1250000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [Albert] [AuthenticateFilter][OnActionExecutionAsync] Prosseguir com requisição autenticada. UserId=123, UserName=Albert
-[23/03/2026 14:32:01.1260000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [Albert] [PokemonGetEndpoint][Get] Processar requisicao GET /pokemon/25
+[23/03/2026 14:32:01.1260000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [Albert] [PokemonGetEndpoint][Get] Processar requisição GET /pokemon/25
 [23/03/2026 14:32:01.1270000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [Albert] [PokemonGetUseCase][ExecuteAsync] Executar caso de uso de consulta de Pokemon. PokemonId=25
 [23/03/2026 14:32:01.1280000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [Albert] [PokemonGetUseCase][ExecuteAsync] Consultar PokeAPI. PokemonId=25
 [23/03/2026 14:32:01.1290000] [019580a1-b2c3-7d4e-8f5a-6b7c8d9e0f12] [Albert] [CachedPokemonApiClient][GetByIdAsync] Verificar cache para Pokemon. PokemonId=25
@@ -88,7 +88,7 @@ A mesma requisição, feita dentro da janela de cache (60 segundos), gera logs s
 [23/03/2026 14:32:10.0010000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [] [CorrelationIdMiddleware][InvokeAsync] Prosseguir com CorrelationId enriquecido no contexto. CorrelationId=019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c
 [23/03/2026 14:32:10.0020000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [] [AuthenticateFilter][OnActionExecutionAsync] Validar Bearer Token da requisição
 [23/03/2026 14:32:10.0030000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [Albert] [AuthenticateFilter][OnActionExecutionAsync] Prosseguir com requisição autenticada. UserId=123, UserName=Albert
-[23/03/2026 14:32:10.0040000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [Albert] [PokemonGetEndpoint][Get] Processar requisicao GET /pokemon/25
+[23/03/2026 14:32:10.0040000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [Albert] [PokemonGetEndpoint][Get] Processar requisição GET /pokemon/25
 [23/03/2026 14:32:10.0050000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [Albert] [PokemonGetUseCase][ExecuteAsync] Executar caso de uso de consulta de Pokemon. PokemonId=25
 [23/03/2026 14:32:10.0060000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [Albert] [PokemonGetUseCase][ExecuteAsync] Consultar PokeAPI. PokemonId=25
 [23/03/2026 14:32:10.0070000] [019580a2-d4e5-7f6a-0b1c-2d3e4f5a6b7c] [Albert] [CachedPokemonApiClient][GetByIdAsync] Verificar cache para Pokemon. PokemonId=25

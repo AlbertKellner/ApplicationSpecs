@@ -282,7 +282,7 @@ Cada batch gera um POST para `https://http-intake.logs.datadoghq.com/api/v2/logs
 ```json
 [
   {
-    "message": "[PokemonGetEndpoint][Get] Processar requisicao GET /pokemon/25",
+    "message": "[PokemonGetEndpoint][Get] Processar requisição GET /pokemon/25",
     "timestamp": 1711198321123,
     "level": "information",
     "service": "albert-playground-ecs-aot-api",
