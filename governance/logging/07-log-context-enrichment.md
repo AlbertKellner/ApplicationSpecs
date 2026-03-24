@@ -210,7 +210,7 @@ CorrelationIdMiddleware
     └── LogContext.PushProperty("CorrelationId", guid)
          │
          ▼
-    GlobalExceptionHandler (captura exceções não tratadas)
+    ExceptionHandler (captura exceções não tratadas)
          │
          ▼
     Controller / Action
