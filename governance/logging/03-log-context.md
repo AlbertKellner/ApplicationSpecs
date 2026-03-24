@@ -65,20 +65,21 @@ public sealed class CorrelationIdMiddleware(RequestDelegate next, ILogger<Correl
 
 ---
 
-## UserName (Contexto de Autenticação)
+## UserId e UserName (Contexto de Autenticação)
 
-O nome do usuário autenticado é enriquecido no contexto de log pelo `AuthenticateFilter`:
+O id e o nome do usuário autenticado são enriquecidos no contexto de log pelo `AuthenticateFilter`:
 
 ```csharp
-using (LogContext.PushProperty("UserName", userName))
+using (LogContext.PushProperty("UserId", user.Id))
+using (LogContext.PushProperty("UserName", user.UserName))
 {
-    await next(context);
+    await next();
 }
 ```
 
 ### Regras
 
-- O `UserName` só é adicionado ao contexto após validação bem-sucedida do token
+- O `UserId` e o `UserName` só são adicionados ao contexto após validação bem-sucedida do token
 - Em requisições não autenticadas, o campo `UserName` fica vazio no template de saída
 - O `AuthenticateFilter` deve logar explicitamente quando o token é ausente ou inválido
 
