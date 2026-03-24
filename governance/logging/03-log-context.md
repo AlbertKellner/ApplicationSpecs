@@ -121,7 +121,7 @@ O formato padronizado permite filtros precisos em ferramentas de observabilidade
 
 ### Regra Geral
 
-O contexto de log (`CorrelationId`, `UserName`) é propagado automaticamente pelo Serilog via `LogContext`. Nenhuma camada da aplicação precisa passar esses valores explicitamente — eles são injetados uma vez no pipeline e disponibilizados em todos os logs subsequentes.
+O contexto de log (`CorrelationId`, `UserId`, `UserName`) é propagado automaticamente pelo Serilog via `LogContext`. Nenhuma camada da aplicação precisa passar esses valores explicitamente — eles são injetados uma vez no pipeline e disponibilizados em todos os logs subsequentes.
 
 ### Chamadas HTTP Externas
 
