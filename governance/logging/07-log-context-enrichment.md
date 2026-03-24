@@ -187,13 +187,13 @@ CorrelationIdMiddleware
 
 ### Endpoints Sem Autenticação
 
-Para endpoints que não possuem `[Authenticate]` (como `/health` e `/login`), os campos `UserId` e `UserName` aparecem **vazios** no template de log:
+Para endpoints que não possuem `[Authenticate]` (como `/health` e `/login`), os campos `UserId` e `UserName` **não são enriquecidos** no LogContext. No template do console — que exibe apenas `[{UserName}]` — o campo aparece vazio:
 
 ```
 [23/03/2026 14:32:01.0000000] [019580a1-...] [] [HealthCheckEndpoint] Processar /health
 ```
 
-Isso é comportamento esperado — o campo `[UserName]` fica vazio pois não há contexto de autenticação.
+Isso é comportamento esperado — o campo `[UserName]` fica vazio e `UserId` fica ausente das propriedades do LogContext pois não há contexto de autenticação.
 
 ---
 
