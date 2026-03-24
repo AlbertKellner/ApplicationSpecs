@@ -14,6 +14,7 @@ Ele deve ser importado por repositórios de aplicação como referência de padr
 
 Diretrizes para padronização de logs em qualquer aplicação.
 
+- @governance/logging/00-log-implementation-guide.md — Guia de implantação (Serilog + Datadog)
 - @governance/logging/01-log-levels.md — Níveis de log e critérios de uso
 - @governance/logging/02-log-structure.md — Formato e campos obrigatórios
 - @governance/logging/03-log-context.md — Contexto, correlação e rastreabilidade
