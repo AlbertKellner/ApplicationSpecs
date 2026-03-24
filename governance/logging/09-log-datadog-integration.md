@@ -125,7 +125,7 @@ if (!string.IsNullOrEmpty(ddApiKey) && ddDirectLogs)
         env: ddEnv));
 
     Log.Information(
-        "[Program] Datadog HTTP Sink ativado — logs enviados diretamente ao Datadog. Env={Env}, Host={Host}",
+        "[Program][Main] Datadog HTTP Sink ativado — logs enviados diretamente ao Datadog. Env={Env}, Host={Host}",
         ddEnv, ddHost);
 }
 ```
