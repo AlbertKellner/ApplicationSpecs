@@ -40,10 +40,10 @@ Quando for necessário referenciar um dado sensível para diagnóstico, usar mas
 
 ```csharp
 // INCORRETO - expõe o token completo
-logger.LogInformation("[AuthFilter][Validate] Token recebido. Token={Token}", token);
+logger.LogInformation("[AuthenticateFilter][OnActionExecutionAsync] Token recebido. Token={Token}", token);
 
 // CORRETO - mascara o token
-logger.LogInformation("[AuthFilter][Validate] Token recebido. TokenPrefix={TokenPrefix}", token[..8] + "***");
+logger.LogInformation("[AuthenticateFilter][OnActionExecutionAsync] Token recebido. TokenPrefix={TokenPrefix}", token[..8] + "***");
 ```
 
 ### 2. Nunca Logar Body de Requisição/Resposta Completo
