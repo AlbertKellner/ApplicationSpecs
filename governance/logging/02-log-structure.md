@@ -169,7 +169,7 @@ public sealed class PokemonGetEndpoint(
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int id, CancellationToken cancellationToken)
     {
-        logger.LogInformation("[PokemonGetEndpoint][Get] Processar requisicao GET /pokemon/{PokemonId}", id);
+        logger.LogInformation("[PokemonGetEndpoint][Get] Processar requisição GET /pokemon/{PokemonId}", id);
 
         var result = await useCase.ExecuteAsync(id, cancellationToken);
 

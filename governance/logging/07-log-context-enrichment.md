@@ -26,7 +26,7 @@ O `CorrelationIdMiddleware` é o primeiro middleware da pipeline e opera da segu
 
 1. Verifica se a requisição contém o header `X-Correlation-Id` com um GUID v7 válido
 2. Se sim, reutiliza o ID recebido (permite rastreabilidade entre serviços)
-3. Se não, gera um novo GUID v7 via `Guid.CreateVersion7()` (.NET 10 nativo)
+3. Se não, gera um novo GUID v7 via `GuidV7.Create()`
 4. Armazena o ID em `HttpContext.Items["CorrelationId"]`
 5. Adiciona o ID ao header de resposta `X-Correlation-Id`
 6. Enriquece **todos os logs** da requisição via `LogContext.PushProperty`
@@ -187,13 +187,13 @@ CorrelationIdMiddleware
 
 ### Endpoints Sem Autenticação
 
-Para endpoints que não possuem `[Authenticate]` (como `/health` e `/login`), os campos `UserId` e `UserName` aparecem **vazios** no template de log:
+Para endpoints que não possuem `[Authenticate]` (como `/health` e `/login`), os campos `UserId` e `UserName` **não são enriquecidos** no LogContext. No template do console — que exibe apenas `[{UserName}]` — o campo aparece vazio:
 
 ```
 [23/03/2026 14:32:01.0000000] [019580a1-...] [] [HealthCheckEndpoint] Processar /health
 ```
 
-Isso é comportamento esperado — o campo `[UserName]` fica vazio pois não há contexto de autenticação.
+Isso é comportamento esperado — o campo `[UserName]` fica vazio e `UserId` fica ausente das propriedades do LogContext pois não há contexto de autenticação.
 
 ---
 
@@ -210,7 +210,7 @@ CorrelationIdMiddleware
     └── LogContext.PushProperty("CorrelationId", guid)
          │
          ▼
-    GlobalExceptionHandler (captura exceções não tratadas)
+    ExceptionHandler (captura exceções não tratadas)
          │
          ▼
     Controller / Action

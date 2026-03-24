@@ -125,7 +125,7 @@ if (!string.IsNullOrEmpty(ddApiKey) && ddDirectLogs)
         env: ddEnv));
 
     Log.Information(
-        "[Program] Datadog HTTP Sink ativado — logs enviados diretamente ao Datadog. Env={Env}, Host={Host}",
+        "[Program][Main] Datadog HTTP Sink ativado — logs enviados diretamente ao Datadog. Env={Env}, Host={Host}",
         ddEnv, ddHost);
 }
 ```
@@ -282,7 +282,7 @@ Cada batch gera um POST para `https://http-intake.logs.datadoghq.com/api/v2/logs
 ```json
 [
   {
-    "message": "[PokemonGetEndpoint][Get] Processar requisicao GET /pokemon/25",
+    "message": "[PokemonGetEndpoint][Get] Processar requisição GET /pokemon/25",
     "timestamp": 1711198321123,
     "level": "information",
     "service": "albert-playground-ecs-aot-api",
@@ -416,6 +416,6 @@ service:albert-playground-ecs-aot-api *ExecuteAsync*
 # Filtrar por nível de log
 service:albert-playground-ecs-aot-api status:warn
 
-# Combinação: erros em produção de um endpoint
+# Combinação: erros em ambiente local de um endpoint
 service:albert-playground-ecs-aot-api env:local status:error *WeatherConditions*
 ```
