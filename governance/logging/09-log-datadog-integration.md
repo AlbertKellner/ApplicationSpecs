@@ -416,6 +416,6 @@ service:albert-playground-ecs-aot-api *ExecuteAsync*
 # Filtrar por nível de log
 service:albert-playground-ecs-aot-api status:warn
 
-# Combinação: erros em produção de um endpoint
+# Combinação: erros em ambiente local de um endpoint
 service:albert-playground-ecs-aot-api env:local status:error *WeatherConditions*
 ```
